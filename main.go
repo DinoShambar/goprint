@@ -711,6 +711,9 @@ func writePrinterFunc(printerHandle uintptr, path string) error {
 
 
 func writePrinterFuncFromFileContents(printerHandle uintptr, docName string, fileContents []byte ) error {
+     if len(fileContents) == 0 {
+          return fmt.Errorf("failed to print file contents: %s", "file contents is empty")
+     }
      fmt.Println("About to write file to path: ", docName)
      var contentLen = uintptr(uint32(len(fileContents)))
      var writtenLen int
